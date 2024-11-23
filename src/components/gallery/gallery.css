@@ -1,0 +1,77 @@
+.gallery {
+  display: grid;
+  grid-gap: 20px;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+}
+
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 300px;
+  margin: 10px;
+  padding: 10px;
+  max-width: 300px; 
+}
+
+.photo-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+}
+
+.photo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+
+.image-container:hover .photo-image {
+  transform: scale(1.1);
+}
+
+
+.photo-details {
+  height: 30%;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word; 
+}
+
+.photographer-name {
+  padding-top: 10px;
+  font-size: 1rem;  
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  white-space: normal; 
+  overflow-wrap: break-word; 
+  word-wrap: break-word;
+  text-overflow: unset; 
+  line-height: 1.4; 
+}
