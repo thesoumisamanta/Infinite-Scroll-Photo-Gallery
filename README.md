@@ -1,8 +1,13 @@
-# React + Vite
+# Responsive Photo Gallery Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a responsive photo gallery application built with **React (Vite)** that fetches images dynamically from the **Unsplash API**. The app includes infinite scrolling, a mobile-friendly grid layout, and error handling for a seamless user experience.  
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dynamic Image Fetching**: Fetches photos from the Unsplash API.  
+- **Infinite Scrolling**: Automatically loads more photos as the user scrolls.  
+- **Responsive Design**: Adapts to different screen sizes:  
+  - 1-2 columns on small screens.  
+  - 3-4 columns on larger screens.  
+- **Error Handling**: Displays error messages for failed API requests.  
+- **Loading Indicator**: Shows a spinner or "Loading..." text while fetching images.  
