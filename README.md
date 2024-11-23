@@ -44,10 +44,31 @@ git clone https://github.com/your-username/photo-gallery-app.git
 cd photo-gallery-app  
 ```
 
-Install Dependencies
+### 2. Install Dependencies
 ```bash
 npm install 
 ``` 
 
-VITE_UNSPLASH_ACCESS_KEY=your_unsplash_api_key  
+### 3. Set Environment Variables
+```bash
+VITE_UNSPLASH_ACCESS_KEY=your_unsplash_api_key
+``` 
+
+### 4. Run the App
+```bash
 npm run dev  
+```
+
+### 5. Access the Application
+Open your browser and navigate to http://localhost:5173.
+
+
+Deployment
+
+
+Live Application: https://your-live-site.vercel.app
+
+
+Github Repository
+https://github.com/thesoumisamanta/Infinite-Scroll-Photo-Gallery
+
