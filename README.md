@@ -42,10 +42,12 @@ This is a responsive photo gallery application built with **React (Vite)** that 
 ```bash  
 git clone https://github.com/your-username/photo-gallery-app.git  
 cd photo-gallery-app  
-
+```
 
 Install Dependencies
-npm install  
+```bash
+npm install 
+``` 
 
 VITE_UNSPLASH_ACCESS_KEY=your_unsplash_api_key  
 npm run dev  
