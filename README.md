@@ -63,12 +63,6 @@ npm run dev
 Open your browser and navigate to http://localhost:5173.
 
 
-Deployment
-
-
-Live Application: https://your-live-site.vercel.app
-
-
 Github Repository
 https://github.com/thesoumisamanta/Infinite-Scroll-Photo-Gallery
 
