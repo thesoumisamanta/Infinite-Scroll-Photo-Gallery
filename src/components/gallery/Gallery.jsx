@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPhotos } from '../../redux/slices/gallerySlice';
 import Spinner from '../spinner/Spinner';
@@ -12,52 +12,46 @@ export default function Gallery() {
         (state) => state.gallery
     );
 
-    const [showSpinner, setShowSpinner] = useState(false);
+
     const [initialLoad, setInitialLoad] = useState(true);
+    const observerRef = useRef(null)
 
     useEffect(() => {
-        
+
         if (initialLoad && !criticalError && hasMore && status !== 'loading') {
-            console.log("Fetching photos...");
-            setShowSpinner(true);
-            const timer = setTimeout(() => {
-                setShowSpinner(false);
-                dispatch(loadPhotos(page));
-                setInitialLoad(false);  
-            }, 1500);
-    
-            return () => clearTimeout(timer);
-        } else {
-            console.log("Fetch stopped: ", { criticalError, hasMore, status });
+            dispatch(loadPhotos(page))
+            setInitialLoad(false)
         }
+
     }, [dispatch, page, hasMore, status, criticalError, initialLoad]);
 
-    const handleScroll = () => {
-        if (
-            !criticalError && 
-            window.innerHeight + document.documentElement.scrollTop >=
-                document.documentElement.offsetHeight - 500 &&
-            !showSpinner &&
-            hasMore &&
-            status !== 'loading' &&
-            !initialLoad  
-        ) {
-            console.log("Triggered loadPhotos from scroll.");
-            dispatch(loadPhotos(page));
-        } else {
-            console.log("Scroll ignored: ", { criticalError, hasMore, showSpinner, status });
+    const handleObserver = (entries) => {
+        const [entry] = entries
+
+        if (entry.isIntersecting && !initialLoad && hasMore && status !== 'loading') {
+            dispatch(loadPhotos(page))
         }
-    };
+    }
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        const observer = new IntersectionObserver(handleObserver, {
+            root: null,
+            rootMargin: '100px',
+            threshold: 0.1
+        })
+
+        if (observerRef.current) {
+            observer.observe(observerRef.current)
+        }
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [handleScroll]);
+            if (observerRef.current) {
+                observer.unobserve(observerRef.current)
+            }
+        }
+    }, [photos, hasMore, status]);
 
-    
+
     if (criticalError || status === 'failed') {
         return (
             <ErrorPage
@@ -69,11 +63,14 @@ export default function Gallery() {
 
     return (
         <div className="gallery">
-            {photos.map((photo) => (
-                <PhotoCard key={photo.id} photo={photo} />
-            ))}
+            {photos.map((photo, index) => {
+                const isLastPhoto = index === photos.length - 1
+                return (
+                    <PhotoCard key={photo.id} photo={photo} ref={isLastPhoto ? observerRef : null} />
+                )
+            })}
 
-            {(status === 'loading' || showSpinner) && <Spinner />}
+            {status === 'loading' && <Spinner />}
         </div>
     );
 }

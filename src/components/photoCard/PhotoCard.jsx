@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import './photoCard.css';
 
-export default function PhotoCard({ photo }) {
+const PhotoCard = forwardRef(({ photo }, ref) => {
   return (
-    <div className="photo-card" aria-labelledby={`photo-${photo.id}`}>
+    <div className="photo-card" aria-labelledby={`photo-${photo.id}`} ref={ref}>
       <div className="image-container">
         <img
           src={photo.urls.small}
@@ -23,4 +23,6 @@ export default function PhotoCard({ photo }) {
       </div>
     </div>
   );
-}
+});
+
+export default PhotoCard;
